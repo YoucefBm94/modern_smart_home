@@ -88,13 +88,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
+                padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
+                child: Divider(
+                  color: Colors.grey[800],
+                  thickness: 1,
+                ),
+              ),
+              Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: paddingHorizontal, vertical: paddingVertical),
+                    horizontal: paddingHorizontal),
                 child: const Text("Smart Devices "),
               ),
               Expanded(
                   child: GridView.builder(
                 itemCount: mySmartDevices.length,
+                physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(25),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, childAspectRatio: 1 / 1.3),
@@ -102,8 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   return SmartDeviceBox(
                     deviceName: mySmartDevices[index][0],
                     iconPath: mySmartDevices[index][1],
-                    isSwitched: mySmartDevices[index][2],
-                    onChanged: (value) {
+                    powerOn: mySmartDevices[index][2],
+                    func: (value) {
                       setState(() {
                         mySmartDevices[index][2] = value;
                       });
